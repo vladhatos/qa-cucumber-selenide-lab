@@ -17,7 +17,7 @@ public class PostSteps {
     //Background
     @Given("utilizatorul s-a logat cu emailul {string} si parola {string}")
     public void loginWithCredentials(String email, String password) {
-        loginPage.openPage("https://apps.qualiadept.eu/hapifyme.php");
+        loginPage.openPage("https://apps.qualiadept.eu/hapifyme");
         loginPage.login(email, password);
         //loginPage.clickLogin();
         assertTrue("Login failed – feed page not loaded", feedPage.isFeedPageLoaded());

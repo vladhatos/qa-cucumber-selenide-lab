@@ -15,7 +15,7 @@ public class Hooks {
     @Before
     public void setUp(Scenario scenario) {
         // Configurare globală Selenide
-        Configuration.baseUrl = "https://apps.qualiadept.eu/hapifyme.php";
+        Configuration.baseUrl = "https://apps.qualiadept.eu/hapifyme";
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10_000;
