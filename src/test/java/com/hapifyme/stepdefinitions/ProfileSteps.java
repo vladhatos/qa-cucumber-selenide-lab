@@ -3,6 +3,7 @@ package com.hapifyme.stepdefinitions;
 import com.hapifyme.pages.NavigationBar;
 import com.hapifyme.pages.SearchPage;
 import com.hapifyme.pages.SettingsPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,7 +27,7 @@ public class ProfileSteps {
     //Search
     @When("utilizatorul caută {string} în bara de navigare")
     public void searchUser(String query) {
-        $(By.cssSelector("input[name='q']")).setValue(query);
+        navBar.searchUser(query);
     }
 
     @Then("ar trebui să vadă o listă de rezultate care conține {string}")
@@ -49,13 +50,13 @@ public class ProfileSteps {
     }
 
     @When("utilizatorul cauta un utilizator inexistent in search bar")
-    public void searchInexistentUser(String query) {
-        $(By.cssSelector("input[name='q']")).setValue(query);
+    public void searchInexistentUser() {
+        navBar.searchUser("~~~~");
     }
 
     @Then("o pagina fara rezultate e afisata")
     public void noResultsMessage() {
-        assertTrue("Error was not displayed", searchPage.showsNoResultsMessage());
+        searchPage.showsNoResultsMessage();
     }
     //Settings (Data Table)
     @When("utilizatorul navigheaza la Settings")
@@ -65,8 +66,8 @@ public class ProfileSteps {
     }
 
     @And("utilizatorul editeaza urmatoarele valori:")
-    public void updateDetailsFromDataTable() {
-        settingsPage.updateDetails();
+    public void updateDetailsFromDataTable(DataTable dataTable) {
+        settingsPage.updateDetails(dataTable);
     }
 
     @And("utilizatorul da click pe Update")
@@ -75,8 +76,10 @@ public class ProfileSteps {
     }
 
     @Then("noile setari sunt salvate")
-    public void settingsSavedSuccessfully(String settingsUpdated) {
+    public void settingsSavedSuccessfully() {
         //Verificam daca apare textul care indica salvarea detaliilor
-        Assert.assertTrue("Text not found!", settingsUpdated.contains("Details updated"));
+        //Assert.assertTrue("Text not found!", settingsUpdated.contains("Details updated"));
+        settingsPage.getMainColumn().shouldBe(visible);
+        settingsPage.getMainColumn().shouldHave(text("Details updated"));
     }
 }

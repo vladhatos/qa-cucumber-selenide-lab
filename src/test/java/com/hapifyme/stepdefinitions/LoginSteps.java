@@ -31,7 +31,7 @@ public class LoginSteps {
     //Given
     @Given("utilizatorul deschide pagina de login")
     public void theUserIsOnTheLoginPage() {
-        loginPage.openPage("(https://apps.qualiadept.eu/hapifyme.php)");
+        loginPage.openPage("https://apps.qualiadept.eu/hapifyme.php");
 
     }
 

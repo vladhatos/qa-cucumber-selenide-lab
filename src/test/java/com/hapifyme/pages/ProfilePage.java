@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class ProfilePage {
 
     //Locatori
-    private final SelenideElement profileInfo   = $(".user_details column");
-    private final SelenideElement postsArea     = $(".posts_area");
+    private final SelenideElement profileInfo = $(".user_details_left_right");
+    private final SelenideElement postsArea = $(".posts_area");
 
 
     //Queries
